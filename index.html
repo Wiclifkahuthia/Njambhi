@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nyawira Njambhi ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+overflow:hidden;
+font-family:Consolas, monospace;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#020202;
+color:#00ff66;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card{
+
+width:900px;
+max-width:95%;
+
+background:#050505;
+
+border:2px solid #00ff66;
+
+box-shadow:
+0 0 20px #00ff66,
+0 0 60px rgba(0,255,120,.25);
+
+padding:35px;
+
+border-radius:12px;
+
+text-align:left;
+
+color:#00ff66;
+
+font-family:Consolas, monospace;
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+h1{
+font-family:'Dancing Script',cursive;
+font-size:65px;
+margin-bottom:15px;
+}
+
+h2{
+font-size:35px;
+margin-bottom:25px;
+}
+
+p{
+font-size:20px;
+line-height:1.8;
+margin-bottom:30px;
+}
+
+button{
+
+background:black;
+
+color:#00ff66;
+
+border:2px solid #00ff66;
+
+padding:15px 35px;
+
+font-size:18px;
+
+font-family:Consolas;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+background:#00ff66;
+
+color:black;
+
+box-shadow:0 0 25px #00ff66;
+
+}
+
+#yes{
+background:#ff0066;
+color:white;
+}
+
+#yes:hover{
+transform:scale(1.1);
+}
+
+#no{
+background:white;
+color:#ff0066;
+position:absolute;
+}
+
+#message{
+display:none;
+font-size:35px;
+font-family:'Dancing Script',cursive;
+animation:pop 1s ease;
+margin-top:20px;
+}
+
+@keyframes pop{
+0%{transform:scale(0);}
+100%{transform:scale(1);}
+}
+
+.heart{
+position:absolute;
+font-size:25px;
+animation:float linear infinite;
+opacity:.8;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh) rotate(0);
+opacity:0;
+}
+20%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+}
+
+canvas{
+position:absolute;
+top:0;
+left:0;
+pointer-events:none;
+}
+#matrix{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+z-index:-2;
+
+}
+.terminal{
+
+display:flex;
+align-items:center;
+padding-bottom:20px;
+border-bottom:1px solid #00ff66;
+margin-bottom:30px;
+
+}
+
+.dot{
+
+width:14px;
+height:14px;
+border-radius:50%;
+margin-right:8px;
+
+}
+
+.red{
+background:#ff3b30;
+}
+
+.yellow{
+background:#ffcc00;
+}
+
+.green{
+background:#00ff66;
+}
+
+.title{
+
+margin-left:15px;
+
+font-size:14px;
+
+letter-spacing:2px;
+
+color:#00ff66;
+
+font-weight:bold;
+
+}
+
+</style>
+</head>
+
+<body>
+<canvas id="matrix"></canvas>
+<canvas id="canvas"></canvas>
+<div class="card">
+
+<div class="terminal">
+
+<div class="dot red"></div>
+
+<div class="dot yellow"></div>
+
+<div class="dot green"></div>
+
+<span class="title">
+BLACKLIST TERMINAL v5.7
+</span>
+
+</div>
+<h1>> ACCESSING TARGET...</h1>
+<h2 id="target">
+TARGET:
+<span style="color:#00ff66">
+NYAWIRA NJAMBHI
+</span>
+</h2>
+
+<p>
+
+> Connecting...
+
+<br>
+
+> Scanning profile...
+
+<br>
+
+██████████████ 100%
+
+<br><br>
+
+Name............. NYAWIRA NJAMBHI
+
+<br>
+
+Smile............ PERFECT
+
+<br>
+
+Personality...... AMAZING
+
+<br>
+
+Beauty........... EXCEPTIONAL
+
+<br>
+
+Searching flaws..
+
+<br>
+
+ERROR 404
+
+<br>
+
+No flaws detected.
+
+<br><br>
+
+Injecting love.exe...
+
+<br>
+
+SUCCESS.
+
+</p>
+
+<h2 style="text-align:center;color:#00ff66;">
+
+SYSTEM MESSAGE
+
+<br><br>
+
+Will You Be My Girlfriend?
+
+</h2>
+
+<button id="yes">YES ❤️</button>
+<button id="no">NO 😅</button>
+
+<div id="message">
+
+ACCESS GRANTED.
+
+<br><br>
+
+Relationship Status Updated...
+
+██████████████ 100%
+
+<br><br>
+
+Congratulations!
+
+<br><br>
+
+You just made me the happiest guy alive.
+
+<br><br>
+
+Mission Complete.
+
+❤️
+
+</div>
+
+</div>
+
+<script>
+const matrix=document.getElementById("matrix");
+const mctx=matrix.getContext("2d");
+
+matrix.width=window.innerWidth;
+matrix.height=window.innerHeight;
+
+const letters="01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%^&*";
+
+const fontSize=16;
+
+const columns=Math.floor(matrix.width/fontSize);
+
+const drops=[];
+
+for(let i=0;i<columns;i++){
+
+drops[i]=1;
+
+}
+
+function drawMatrix(){
+
+mctx.fillStyle="rgba(0,0,0,0.05)";
+mctx.fillRect(0,0,matrix.width,matrix.height);
+
+mctx.fillStyle="#00ff66";
+mctx.font=fontSize+"px monospace";
+
+for(let i=0;i<drops.length;i++){
+
+const text=letters[Math.floor(Math.random()*letters.length)];
+
+mctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+if(drops[i]*fontSize>matrix.height && Math.random()>0.975){
+
+drops[i]=0;
+
+}
+
+drops[i]++;
+
+}
+
+}
+
+setInterval(drawMatrix,35);
+
+// Floating hearts
+
+function createHeart(){
+
+...
+// Floating hearts
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML=["❤️","💕","💖","💘","💝"][Math.floor(Math.random()*5)];
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.animationDuration=(4+Math.random()*6)+"s";
+
+heart.style.fontSize=(20+Math.random()*35)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),10000);
+
+}
+
+setInterval(createHeart,250);
+
+// NO button escaping
+
+const no=document.getElementById("no");
+
+document.addEventListener("mousemove",function(e){
+
+const x=Math.random()*(window.innerWidth-120);
+
+const y=Math.random()*(window.innerHeight-60);
+
+const rect=no.getBoundingClientRect();
+
+if(Math.abs(e.clientX-rect.left)<100 &&
+Math.abs(e.clientY-rect.top)<100){
+
+no.style.left=x+"px";
+no.style.top=y+"px";
+
+}
+
+});
+
+// YES button
+
+document.getElementById("yes").onclick=function(){
+
+document.getElementById("message").style.display="block";
+
+confetti();
+
+}
+
+// Simple Confetti
+
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let pieces=[];
+
+function confetti(){
+
+for(let i=0;i<250;i++){
+
+pieces.push({
+
+x:Math.random()*canvas.width,
+
+y:Math.random()*canvas.height-600,
+
+r:Math.random()*8+4,
+
+d:Math.random()*10,
+
+c:`hsl(${Math.random()*360},100%,60%)`
+
+});
+
+}
+
+animate();
+
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+pieces.forEach((p,i)=>{
+
+ctx.fillStyle=p.c;
+
+ctx.beginPath();
+
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+
+ctx.fill();
+
+p.y+=4;
+
+p.x+=Math.sin(p.d);
+
+if(p.y>canvas.height)pieces.splice(i,1);
+
+});
+
+if(pieces.length>0)requestAnimationFrame(animate);
+
+}
+
+</script>
+
+</body>
+</html>

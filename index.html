@@ -16,14 +16,24 @@ box-sizing:border-box;
 }
 
 body{
-overflow:hidden;
-font-family:Consolas, monospace;
-height:100vh;
+
+margin:0;
+padding:20px;
+
+min-height:100vh;
+
 display:flex;
 justify-content:center;
 align-items:center;
+
 background:#020202;
+
+font-family:Consolas, monospace;
+
 color:#00ff66;
+
+overflow-x:hidden;
+
 }
 
 @keyframes bg{
@@ -34,8 +44,8 @@ color:#00ff66;
 
 .card{
 
-width:900px;
-max-width:95%;
+width:min(900px,95vw);
+max-width:90vw;
 
 background:#050505;
 
@@ -45,7 +55,7 @@ box-shadow:
 0 0 20px #00ff66,
 0 0 60px rgba(0,255,120,.25);
 
-padding:35px;
+padding:25px;
 
 border-radius:12px;
 
@@ -63,19 +73,19 @@ overflow:hidden;
 
 h1{
 font-family:'Dancing Script',cursive;
-font-size:65px;
-margin-bottom:15px;
+font-size:48px;
+margin-bottom:10px;
 }
 
 h2{
-font-size:35px;
-margin-bottom:25px;
+font-size:24px;
+margin-bottom:18px;
 }
 
 p{
-font-size:20px;
-line-height:1.8;
-margin-bottom:30px;
+font-size:16px;
+line-height:1.6;
+margin-bottom:20px;
 }
 
 button{
@@ -86,9 +96,9 @@ color:#00ff66;
 
 border:2px solid #00ff66;
 
-padding:15px 35px;
+padding:10px 24px;
 
-font-size:18px;
+font-size:16px;
 
 font-family:Consolas;
 
@@ -109,23 +119,41 @@ box-shadow:0 0 25px #00ff66;
 }
 
 #yes{
-background:#ff0066;
-color:white;
+
+background:#00ff66;
+color:black;
+border:2px solid #00ff66;
+
 }
 
 #yes:hover{
-transform:scale(1.1);
+
+background:#00cc55;
+color:black;
+box-shadow:0 0 25px #00ff66;
+transform:scale(1.05);
+
 }
 
 #no{
-background:white;
-color:#ff0066;
+
+background:black;
+color:#00ff66;
+border:2px solid #00ff66;
 position:absolute;
+
+}
+
+#no:hover{
+
+background:#00ff66;
+color:black;
+
 }
 
 #message{
 display:none;
-font-size:35px;
+font-size:22px;
 font-family:'Dancing Script',cursive;
 animation:pop 1s ease;
 margin-top:20px;
@@ -222,7 +250,112 @@ color:#00ff66;
 font-weight:bold;
 
 }
+/* ===========================
+   RESPONSIVE DESIGN
+=========================== */
 
+@media (max-width:900px){
+
+.card{
+
+width:95%;
+padding:20px;
+
+}
+
+h1{
+
+font-size:42px;
+
+}
+
+h2{
+
+font-size:22px;
+
+}
+
+p{
+
+font-size:16px;
+line-height:1.5;
+
+}
+
+button{
+
+font-size:16px;
+padding:12px 22px;
+
+}
+
+#message{
+
+font-size:20px;
+
+}
+
+}
+
+@media (max-width:600px){
+
+body{
+
+padding:15px;
+
+overflow:auto;
+
+}
+
+.card{
+
+width:100%;
+padding:18px;
+
+}
+
+h1{
+
+font-size:32px;
+
+}
+
+h2{
+
+font-size:18px;
+
+}
+
+p{
+
+font-size:14px;
+line-height:1.5;
+
+}
+
+button{
+
+width:100%;
+margin:8px 0;
+font-size:15px;
+
+}
+
+#no{
+
+position:relative;
+left:auto!important;
+top:auto!important;
+
+}
+
+#message{
+
+font-size:18px;
+
+}
+
+}
 </style>
 </head>
 
@@ -262,7 +395,7 @@ NYAWIRA NJAMBHI
 
 <br>
 
-██████████████ 100%
+COMPLETED...██████████████ 100%
 
 <br><br>
 
@@ -290,11 +423,11 @@ ERROR 404
 
 <br>
 
-No flaws detected.
+NO FLAWS DETECTED
 
 <br><br>
 
-Injecting love.exe...
+Injecting💖💖.exe...
 
 <br>
 
@@ -308,7 +441,7 @@ SYSTEM MESSAGE
 
 <br><br>
 
-Will You Be My Girlfriend?
+NYAWIRA will you Be My Girl??
 
 </h2>
 
@@ -327,11 +460,11 @@ Relationship Status Updated...
 
 <br><br>
 
-Congratulations!
+Congratulations!🥳🥳
 
 <br><br>
 
-You just made me the happiest guy alive.
+THE BOY IS HAPPY😊😊
 
 <br><br>
 
@@ -392,11 +525,6 @@ drops[i]++;
 
 setInterval(drawMatrix,35);
 
-// Floating hearts
-
-function createHeart(){
-
-...
 // Floating hearts
 
 function createHeart(){
